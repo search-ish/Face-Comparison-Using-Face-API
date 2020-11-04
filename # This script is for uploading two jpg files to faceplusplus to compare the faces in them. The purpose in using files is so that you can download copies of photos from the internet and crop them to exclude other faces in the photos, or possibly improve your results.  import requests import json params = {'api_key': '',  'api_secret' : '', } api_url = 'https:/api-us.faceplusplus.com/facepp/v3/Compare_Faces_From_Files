@@ -1,0 +1,19 @@
+# This script is for uploading two jpg files to faceplusplus to compare the faces in them. The purpose in using files is so that you can download copies of photos from the internet and crop them to exclude other faces in the photos, or possibly improve your results.
+
+import requests
+import json
+params = {'api_key': '', 
+'api_secret' : '', }
+api_url = 'https://api-us.faceplusplus.com/facepp/v3/compare'
+
+#the api url was identified in the documentation from faceplusplus
+#the terms of all of the params were identified in the documentation 
+#from faceplusplus.
+#make sure the files are saved to the same folder as the Python script.
+
+r = requests.post(api_url, params)
+files = {'image_file1': ('croppedimage1.jpg', open('croppedimage1.jpg', 'rb')), 'image_file2': ('croppedimage1.jpg', open('croppedimage1.jpg', 'rb'))}
+r = requests.post(api_url, params, files=files)
+response = json.loads(r.text)
+x = response['confidence'] 
+print(x)
