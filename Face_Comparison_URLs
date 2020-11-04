@@ -9,13 +9,17 @@ params = {'api_key': 'PASTE YOUR API KEY HERE',
     'image_url1' : 'https://pyxis.nymag.com/v1/imgs/c71/fb1/c5e5566dc3a6fe3db549e6042becb92415-04-charlize-theron.rsquare.w330.jpg', 
     'image_url2' : 'https://4.bp.blogspot.com/-CbRqTz_mINY/T8SkVwME65I/AAAAAAAATqU/A1o6qgabPF4/s1600/Charlize+Theron.jpg'}
 
-#right-click on any image on the internet, click 'copy image address', or right click on the image and click 'open in new tab' and then right-click on the image and click 'copy image address' and paste it between parens next next to image_url1 or image_url2. Above there are two example urls for photos of Charlize Theron.
+#right-click on any image on the internet, click 'copy image address', 
+#or right click on the image and click 'open in new tab' and then right-click 
+#on the image and click 'copy image address' and paste it between parens
+#next next to image_url1 or image_url2. Above there are two example urls
+#for profile photos.
 
 api_url = 'https://api-us.faceplusplus.com/facepp/v3/compare'
-#the api url was identified in the documentation from faceplusplus
- the terms of all of the params were identified in the documentation from faceplusplus.com
 
 r = requests.post(api_url, params)
 response = json.loads(r.text)
-#json.loads outputs the response from the api into a more readable format of key value pairs, one key is named 'confidence' so in order to 
- x = response['confidence'] , response['thresholds']
+#json.loads outputs the response from the api into a more readable format 
+#of key value pairs, the primary key of interest is named 'confidence' that gives 
+#a score on 1-100 that the person in the photo is a likely match
+ x = response['confidence'] 
